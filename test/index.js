@@ -62,7 +62,7 @@ describe('Redis', () => {
         });
     });
 
-    it('allow passing client in option', (done) => {
+    it('allow passing a factory client function in option', (done) => {
 
         const redisClient = RedisClient.createClient();
 
@@ -78,7 +78,7 @@ describe('Redis', () => {
         redisClient.once('ready', () => {
 
             const client = new Catbox.Client(Redis, {
-                client: redisClient
+                client: () => redisClient
             });
             client.start((err) => {
 
